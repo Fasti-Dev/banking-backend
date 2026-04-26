@@ -1,6 +1,7 @@
 package com.banking.account;
 
 import com.banking.customer.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -28,5 +29,6 @@ public class Account {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonIgnore
     private Customer customer;
 }

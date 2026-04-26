@@ -1,8 +1,18 @@
+### Create Customer
 POST http://localhost:8080/api/customers
 Content-Type: application/json
 
 {
   "firstName": "Max",
   "lastName": "Mustermann",
-  "email": "max@mustermann.com"
+  "email": "max@example.com"
 }
+
+### Get Customers
+GET http://localhost:8080/api/customers
+
+### Create Account for Customer 1
+POST http://localhost:8080/api/accounts/customer/1
+
+### Get Accounts
+GET http://localhost:8080/api/accounts
