@@ -1,18 +1,22 @@
 # Domain Model
 
 ## Customer
+
 Repräsentiert einen Bankkunden.
 
 Attribute:
+
 - id
 - firstName
 - lastName
 - email
 
 ## Account
+
 Repräsentiert ein Bankkonto.
 
-Attribute: 
+Attribute:
+
 - id
 - iban
 - balance
@@ -20,9 +24,11 @@ Attribute:
 - customerId
 
 ## Transaction
+
 Repräsentiert eine Kontobewegung.
 
 Attribute:
+
 - id
 - amount
 - type
