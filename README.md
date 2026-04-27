@@ -1,19 +1,22 @@
-# Banking-Backend
+# Banking Backend
 
-A Small banking backend built with Java, Spring Boot, Maven and H2 Database.
+A small banking backend built with **Java**, **Spring Boot**, **Maven** and **H2 Database**.
 
 ## About
 
-This project is a learning and portfolio project that demonstrates a simple backend architecture.
+This project is a learning and portfolio project that demonstrates a simple backend architecture for a banking system.
 
 The application currently supports:
 
 - creating customers
-- creating accounts for customers
+- creating bank accounts
 - depositing money
 - withdrawing money
+- transferring money between accounts
 - viewing account balances
 - viewing transaction history
+
+---
 
 ## Tech Stack
 
@@ -24,7 +27,9 @@ The application currently supports:
 - Spring Data JPA
 - H2 Database
 - Lombok
-- Validation
+- Jakarta Validation
+
+---
 
 ## Project Structure
 
@@ -36,54 +41,88 @@ src/main/java/com/banking
 └── common
 ```
 
-# Domain Model
+---
 
-## Customer
+## Features
+
+### Customer Management
+
+- Create customers
+- View all customers
+
+### Account Management
+
+- Create accounts for customers
+- Automatically generate IBAN
+- View all accounts
+
+### Money Operations
+
+- Deposit money
+- Withdraw money
+- Transfer money between accounts
+
+### Transaction History
+
+- View all transactions of an account
+
+---
+
+## Domain Model
+
+### Customer
 
 Represents a bank customer.
 
 Fields:
+
 - id
 - firstName
 - lastName
 - email
 
-## Account
+### Account
 
 Represents a bank account.
 
 Fields:
+
 - id
 - iban
 - balance
 - customer
 
-## Transaction
+### Transaction
 
-Represents a money movement on an account.
+Represents a money movement.
 
 Fields:
+
 - id
 - amount
 - type
 - timestamp
 - account
 
-# API Endpoints
+---
+
+## API Endpoints
 
 ## Customers
 
-Create Customer:
+Create customer:
 
 ```http
 POST /api/customers
-``` 
+```
 
 Get all customers:
 
 ```http
 GET /api/customers
-``` 
+```
+
+---
 
 ## Accounts
 
@@ -91,68 +130,90 @@ Create account for customer:
 
 ```http
 POST /api/accounts/customer/{customerId}
-``` 
+```
 
 Get all accounts:
 
 ```http
 GET /api/accounts
-``` 
+```
 
 Deposit money:
 
 ```http
 POST /api/accounts/{accountId}/deposit?amount=500
-``` 
+```
 
 Withdraw money:
 
 ```http
 POST /api/accounts/{accountId}/withdraw?amount=200
-``` 
+```
+
+Transfer money:
+
+```http
+POST /api/accounts/{sourceAccountId}/transfer/{targetAccountId}?amount=100
+```
+
+---
 
 ## Transactions
 
-Get transactions for account:
+Get all transactions for account:
 
 ```http
 GET /api/transactions/account/{accountId}
-``` 
+```
+
+---
 
 ## Example Requests
 
-Example requests are available in:
+Example requests can be found in:
 
-```http
+```text
 requests.http
-``` 
+```
 
-# How to Run
+---
 
-Start the application with IntelliJ IDEA or run:
+## How to Run
+
+Start the application in IntelliJ IDEA or run:
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-The application runs on:
+Application runs on:
 
-```http
+```text
 http://localhost:8080
-``` 
+```
 
-# Current Status
+---
+
+## Current Status
 
 Implemented:
-- customer API
-- account API
-- deposit
-- withdrawal
-- transaction history
 
-Planned:
-- transfer between accounts
-- better exception handling
-- DTOs
-- unit tests
-- persistent database configuration
+- Customer API
+- Account API
+- Deposit
+- Withdrawal
+- Transfer
+- Transaction History
+
+---
+
+## Roadmap
+
+Planned next improvements:
+
+- Better exception handling
+- DTO pattern
+- Unit / Integration tests
+- PostgreSQL support
+- Swagger / OpenAPI documentation
+- Authentication / Security
