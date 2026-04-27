@@ -22,3 +22,9 @@ POST http://localhost:8080/api/accounts/1/deposit?amount=500
 
 ### Get Accounts
 GET http://localhost:8080/api/accounts
+
+### Withdraw 200
+POST http://localhost:8080/api/accounts/1/withdraw?amount=200
+
+### Get Accounts
+GET http://localhost:8080/api/accounts

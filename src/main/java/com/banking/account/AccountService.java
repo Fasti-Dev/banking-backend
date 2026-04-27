@@ -54,6 +54,28 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
+    public Account withdraw(Long accountId, BigDecimal amount) {
+        Account account = accountRepository.findById(accountId)
+                .orElseThrow();
+
+        if (account.getBalance().compareTo(amount) < 0) {
+            throw new IllegalArgumentException("Insufficient balance");
+        }
+
+        account.setBalance(account.getBalance().subtract(amount));
+
+        Transaction transaction = Transaction.builder()
+                .account(account)
+                .amount(amount)
+                .type(TransactionType.WITHDRAWAL)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        transactionRepository.save(transaction);
+
+        return accountRepository.save(account);
+    }
+
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
     }

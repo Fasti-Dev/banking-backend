@@ -27,6 +27,14 @@ public class AccountController {
         return accountService.deposit(accountId, amount);
     }
 
+    @PostMapping("/{accountId}/withdraw")
+    public Account withdraw(
+            @PathVariable Long accountId,
+            @RequestParam BigDecimal amount
+    ) {
+        return accountService.withdraw(accountId, amount);
+    }
+
     @GetMapping
     public List<Account> getAllAccounts() {
         return accountService.getAllAccounts();
