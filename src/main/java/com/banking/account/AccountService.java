@@ -77,6 +77,41 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
+    public Account transfer(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {
+        Account sourceAccount = accountRepository.findById(sourceAccountId)
+                .orElseThrow();
+
+        Account targetAccount = accountRepository.findById(targetAccountId)
+                .orElseThrow();
+
+        if (sourceAccount.getBalance().compareTo(amount) < 0) {
+            throw new IllegalArgumentException("Insufficient balance");
+        }
+
+        sourceAccount.setBalance(sourceAccount.getBalance().subtract(amount));
+        targetAccount.setBalance(targetAccount.getBalance().add(amount));
+
+        Transaction sourceTransaction = Transaction.builder()
+                .account(sourceAccount)
+                .amount(amount)
+                .type(TransactionType.TRANSFER)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        Transaction targetTransaction = Transaction.builder()
+                .account(targetAccount)
+                .amount(amount)
+                .type(TransactionType.TRANSFER)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        transactionRepository.save(sourceTransaction);
+        transactionRepository.save(targetTransaction);
+
+        accountRepository.save(targetAccount);
+        return accountRepository.save(sourceAccount);
+    }
+
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
     }

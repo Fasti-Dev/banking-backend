@@ -35,6 +35,15 @@ public class AccountController {
         return accountService.withdraw(accountId, amount);
     }
 
+    @PostMapping("/{sourceAccountId}/transfer/{targetAccountId}")
+    public Account transfer(
+            @PathVariable Long sourceAccountId,
+            @PathVariable Long targetAccountId,
+            @RequestParam BigDecimal amount
+    ) {
+        return accountService.transfer(sourceAccountId, targetAccountId, amount);
+    }
+
     @GetMapping
     public List<Account> getAllAccounts() {
         return accountService.getAllAccounts();

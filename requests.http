@@ -1,4 +1,14 @@
-### Create Customer
+### Create Customer 1
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Fabian",
+  "lastName": "Kasten",
+  "email": "fabian@kasten.com"
+}
+
+### Create Customer 2
 POST http://localhost:8080/api/customers
 Content-Type: application/json
 
@@ -14,20 +24,26 @@ GET http://localhost:8080/api/customers
 ### Create Account for Customer 1
 POST http://localhost:8080/api/accounts/customer/1
 
+### Create Account for Customer 2
+POST http://localhost:8080/api/accounts/customer/2
+
 ### Get Accounts
 GET http://localhost:8080/api/accounts
 
 ### Deposit 500
 POST http://localhost:8080/api/accounts/1/deposit?amount=500
 
-### Get Accounts
-GET http://localhost:8080/api/accounts
-
 ### Withdraw 200
 POST http://localhost:8080/api/accounts/1/withdraw?amount=200
 
+### Transfer 100 from Account 1 to Account 2
+POST http://localhost:8080/api/accounts/1/transfer/2?amount=100
+
 ### Get Accounts
 GET http://localhost:8080/api/accounts
 
-### Get Transactions for Account 1
+### Get Transactions Account 1
 GET http://localhost:8080/api/transactions/account/1
+
+### Get Transactions Account 2
+GET http://localhost:8080/api/transactions/account/2
