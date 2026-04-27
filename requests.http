@@ -5,7 +5,7 @@ Content-Type: application/json
 {
   "firstName": "Max",
   "lastName": "Mustermann",
-  "email": "max@example.com"
+  "email": "max@mustermann.com"
 }
 
 ### Get Customers
@@ -28,3 +28,6 @@ POST http://localhost:8080/api/accounts/1/withdraw?amount=200
 
 ### Get Accounts
 GET http://localhost:8080/api/accounts
+
+### Get Transactions for Account 1
+GET http://localhost:8080/api/transactions/account/1
