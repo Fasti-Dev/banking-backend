@@ -47,6 +47,7 @@ public class AccountService {
                 .account(account)
                 .amount(amount)
                 .type(TransactionType.DEPOSIT)
+                .timestamp(LocalDateTime.now())
                 .build();
 
         transactionRepository.save(transaction);
