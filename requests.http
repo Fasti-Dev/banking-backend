@@ -16,3 +16,9 @@ POST http://localhost:8080/api/accounts/customer/1
 
 ### Get Accounts
 GET http://localhost:8080/api/accounts
+
+### Deposit 500
+POST http://localhost:8080/api/accounts/1/deposit?amount=500
+
+### Get Accounts
+GET http://localhost:8080/api/accounts

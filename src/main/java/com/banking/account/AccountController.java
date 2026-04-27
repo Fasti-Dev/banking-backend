@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/accounts")
@@ -16,6 +17,14 @@ public class AccountController {
     @PostMapping("/customer/{customerId}")
     public Account createAccount(@PathVariable Long customerId) {
         return accountService.createAccount(customerId);
+    }
+
+    @PostMapping("/{accountId}/deposit")
+    public Account deposit(
+            @PathVariable Long accountId,
+            @RequestParam BigDecimal amount
+    ) {
+        return accountService.deposit(accountId, amount);
     }
 
     @GetMapping
