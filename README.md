@@ -4,7 +4,7 @@ A Small banking backend built with Java, Spring Boot, Maven and H2 Database.
 
 ## About
 
-This project is a learning and portfolio project that demonstrates a simple backend architecture
+This project is a learning and portfolio project that demonstrates a simple backend architecture.
 
 The application currently supports:
 
