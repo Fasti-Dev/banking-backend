@@ -2,6 +2,8 @@ package com.banking.transaction;
 
 import com.banking.account.Account;
 import com.banking.account.AccountRepository;
+import com.banking.common.exception.ResourceNotFoundException;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,7 @@ public class TransactionService {
 
     public List<Transaction> getTransactionsByAccount(Long accountId) {
         Account account = accountRepository.findById(accountId)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException("Account not found"));
 
         return transactionRepository.findByAccount(account);
     }

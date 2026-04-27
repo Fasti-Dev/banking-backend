@@ -5,6 +5,8 @@ import com.banking.customer.CustomerRepository;
 import com.banking.transaction.Transaction;
 import com.banking.transaction.TransactionRepository;
 import com.banking.transaction.TransactionType;
+import com.banking.common.exception.BankingException;
+import com.banking.common.exception.ResourceNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +28,7 @@ public class AccountService {
     public Account createAccount(Long customerId) {
 
         Customer customer = customerRepository.findById(customerId)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found"));
 
         Account account = Account.builder()
                 .iban(generateIban())
@@ -39,7 +41,7 @@ public class AccountService {
 
     public Account deposit(Long accountId, BigDecimal amount) {
         Account account = accountRepository.findById(accountId)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException("Account not found"));
 
         account.setBalance(account.getBalance().add(amount));
 
@@ -57,10 +59,10 @@ public class AccountService {
 
     public Account withdraw(Long accountId, BigDecimal amount) {
         Account account = accountRepository.findById(accountId)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException("Account not found"));
 
         if (account.getBalance().compareTo(amount) < 0) {
-            throw new IllegalArgumentException("Insufficient balance");
+            throw new BankingException("Insufficient balance");
         }
 
         account.setBalance(account.getBalance().subtract(amount));
@@ -79,13 +81,13 @@ public class AccountService {
 
     public Account transfer(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {
         Account sourceAccount = accountRepository.findById(sourceAccountId)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException("Source account not found"));
 
         Account targetAccount = accountRepository.findById(targetAccountId)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException("Target account not found"));
 
         if (sourceAccount.getBalance().compareTo(amount) < 0) {
-            throw new IllegalArgumentException("Insufficient balance");
+            throw new BankingException("Insufficient balance");
         }
 
         sourceAccount.setBalance(sourceAccount.getBalance().subtract(amount));

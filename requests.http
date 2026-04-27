@@ -47,3 +47,9 @@ GET http://localhost:8080/api/transactions/account/1
 
 ### Get Transactions Account 2
 GET http://localhost:8080/api/transactions/account/2
+
+### Throw Account not found Exception for deposit
+POST http://localhost:8080/api/accounts/999/deposit?amount=100
+
+### Throw Account not found Exception for transaction
+GET http://localhost:8080/api/transactions/account/999
