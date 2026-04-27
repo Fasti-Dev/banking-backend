@@ -5,6 +5,7 @@ A small banking backend built with **Java**, **Spring Boot**, **Maven** and **H2
 ## About
 
 This project is a learning and portfolio project that demonstrates a simple backend architecture for a banking system.
+Includes clean REST API design and centralized exception handling.
 
 The application currently supports:
 
@@ -65,6 +66,12 @@ src/main/java/com/banking
 ### Transaction History
 
 - View all transactions of an account
+
+### Error Handling
+
+- Global exception handler
+- Clean JSON error responses
+- Proper HTTP status codes (400 / 404)
 
 ---
 
@@ -168,6 +175,19 @@ GET /api/transactions/account/{accountId}
 
 ---
 
+## Error Response Example
+
+```json
+{
+  "timestamp": "2026-04-27T16:30:00",
+  "status": 404,
+  "error": "Not Found",
+  "message": "Account not found"
+}
+```
+
+---
+
 ## Example Requests
 
 Example requests can be found in:
@@ -204,6 +224,8 @@ Implemented:
 - Withdrawal
 - Transfer
 - Transaction History
+- Global exception handling
+- Custom exceptions
 
 ---
 
@@ -211,7 +233,6 @@ Implemented:
 
 Planned next improvements:
 
-- Better exception handling
 - DTO pattern
 - Unit / Integration tests
 - PostgreSQL support
