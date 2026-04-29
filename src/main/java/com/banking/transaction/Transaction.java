@@ -28,6 +28,12 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionType type;
 
+    private String direction;
+
+    private Long relatedAccountId;
+
+    private String description;
+
     private LocalDateTime timestamp;
 
     @ManyToOne

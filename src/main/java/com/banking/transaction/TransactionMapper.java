@@ -7,6 +7,9 @@ public class TransactionMapper {
                 transaction.getId(),
                 transaction.getAmount(),
                 transaction.getType(),
+                transaction.getDirection(),
+                transaction.getRelatedAccountId(),
+                transaction.getDescription(),
                 transaction.getTimestamp(),
                 transaction.getAccount().getId()
         );

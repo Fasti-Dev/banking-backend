@@ -49,6 +49,9 @@ public class AccountService {
                 .account(account)
                 .amount(amount)
                 .type(TransactionType.DEPOSIT)
+                .direction("IN")
+                .relatedAccountId(null)
+                .description("Deposit to account " + account.getId())
                 .timestamp(LocalDateTime.now())
                 .build();
 
@@ -71,6 +74,9 @@ public class AccountService {
                 .account(account)
                 .amount(amount)
                 .type(TransactionType.WITHDRAWAL)
+                .direction("OUT")
+                .relatedAccountId(null)
+                .description("Withdraw from account " + account.getId())
                 .timestamp(LocalDateTime.now())
                 .build();
 
@@ -97,6 +103,9 @@ public class AccountService {
                 .account(sourceAccount)
                 .amount(amount)
                 .type(TransactionType.TRANSFER)
+                .direction("OUT")
+                .relatedAccountId(targetAccount.getId())
+                .description("Transfer to account " + targetAccount.getId())
                 .timestamp(LocalDateTime.now())
                 .build();
 
@@ -104,6 +113,9 @@ public class AccountService {
                 .account(targetAccount)
                 .amount(amount)
                 .type(TransactionType.TRANSFER)
+                .direction("IN")
+                .relatedAccountId(sourceAccount.getId())
+                .description("Transfer from account " + sourceAccount.getId())
                 .timestamp(LocalDateTime.now())
                 .build();
 
