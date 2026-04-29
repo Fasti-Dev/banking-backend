@@ -5,7 +5,8 @@ A small banking backend built with **Java**, **Spring Boot**, **Maven** and **H2
 ## About
 
 This project is a learning and portfolio project that demonstrates a simple backend architecture for a banking system.
-Includes clean REST API design and centralized exception handling.
+
+Includes clean REST API design, centralized exception handling, and DTO-based architecture with mapper classes.
 
 The application currently supports:
 
@@ -29,17 +30,42 @@ The application currently supports:
 - H2 Database
 - Lombok
 - Jakarta Validation
+- DTO Pattern (API Response Models)
+- Swagger / OpenAPI
 
 ---
 
-## Project Structure
+## Backend Package Structure
 
 ```text
 src/main/java/com/banking
 ├── account
+│   ├── Account
+│   ├── AccountController
+│   ├── AccountMapper
+│   ├── AccountRepository
+│   ├── AccountResponse
+│   └── AccountService
 ├── customer
+│   ├── Customer
+│   ├── CustomerController
+│   ├── CustomerMapper
+│   ├── CustomerRepository
+│   ├── CustomerResponse
+│   └── CustomerService
 ├── transaction
+│   ├── Transaction
+│   ├── TransactionController
+│   ├── TransactionMapper
+│   ├── TransactionRepository
+│   ├── TransactionResponse
+│   ├── TransactionService
+│   └── TransactionType
 └── common
+    └── exception
+        ├── BankingException
+        ├── GlobalExceptionHandler
+        └── ResourceNotFoundException
 ```
 
 ---
@@ -72,6 +98,12 @@ src/main/java/com/banking
 - Global exception handler
 - Clean JSON error responses
 - Proper HTTP status codes (400 / 404)
+
+### API Design
+
+- DTO-based API responses
+- Clean separation between entities and external responses
+- Stable and controlled JSON output
 
 ---
 
@@ -108,6 +140,9 @@ Fields:
 - id
 - amount
 - type
+- direction
+- relatedAccountId
+- description
 - timestamp
 - account
 
@@ -115,7 +150,7 @@ Fields:
 
 ## API Endpoints
 
-## Customers
+### Customers
 
 Create customer:
 
@@ -131,7 +166,7 @@ GET /api/customers
 
 ---
 
-## Accounts
+### Accounts
 
 Create account for customer:
 
@@ -165,12 +200,28 @@ POST /api/accounts/{sourceAccountId}/transfer/{targetAccountId}?amount=100
 
 ---
 
-## Transactions
+### Transactions
 
 Get all transactions for account:
 
 ```http
 GET /api/transactions/account/{accountId}
+```
+
+---
+
+## API Documentation
+
+Swagger UI is available at:
+
+```text
+http://localhost:8080/swagger-ui.html
+```
+
+OpenAPI JSON is available at:
+
+```text
+http://localhost:8080/v3/api-docs
 ```
 
 ---
@@ -200,7 +251,7 @@ requests.http
 
 ## How to Run
 
-Start the application in IntelliJ IDEA or run:
+Start the application in IntelliJ IDEA or run (Windows):
 
 ```bash
 ./mvnw spring-boot:run
@@ -216,7 +267,7 @@ http://localhost:8080
 
 ## Current Status
 
-Implemented:
+Implemented Features:
 
 - Customer API
 - Account API
@@ -226,6 +277,9 @@ Implemented:
 - Transaction History
 - Global exception handling
 - Custom exceptions
+- DTO architecture for API responses
+- Mapper classes for entity-to-response conversion
+- Swagger / OpenAPI documentation
 
 ---
 
@@ -233,8 +287,6 @@ Implemented:
 
 Planned next improvements:
 
-- DTO pattern
 - Unit / Integration tests
 - PostgreSQL support
-- Swagger / OpenAPI documentation
 - Authentication / Security
