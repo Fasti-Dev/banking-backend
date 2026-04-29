@@ -39,9 +39,6 @@ POST http://localhost:8080/api/accounts/1/withdraw?amount=200
 ### Transfer 100 from Account 1 to Account 2
 POST http://localhost:8080/api/accounts/1/transfer/2?amount=100
 
-### Get Accounts
-GET http://localhost:8080/api/accounts
-
 ### Get Transactions Account 1
 GET http://localhost:8080/api/transactions/account/1
 

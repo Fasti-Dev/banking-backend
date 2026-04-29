@@ -15,12 +15,16 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping
-    public Customer save(@Valid @RequestBody Customer customer) {
-        return customerService.createCustomer(customer);
+    public CustomerResponse createCustomer(@Valid @RequestBody Customer customer) {
+        Customer savedCustomer = customerService.createCustomer(customer);
+        return CustomerMapper.toResponse(savedCustomer);
     }
 
     @GetMapping
-    public List<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
+    public List<CustomerResponse> getAllCustomers() {
+        return customerService.getAllCustomers()
+                .stream()
+                .map(CustomerMapper::toResponse)
+                .toList();
     }
 }
