@@ -15,37 +15,48 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping("/customer/{customerId}")
-    public Account createAccount(@PathVariable Long customerId) {
-        return accountService.createAccount(customerId);
+    public AccountResponse createAccount(@PathVariable Long customerId) {
+        return AccountMapper.toResponse(
+                accountService.createAccount(customerId)
+        );
     }
 
     @PostMapping("/{accountId}/deposit")
-    public Account deposit(
+    public AccountResponse deposit(
             @PathVariable Long accountId,
             @RequestParam BigDecimal amount
     ) {
-        return accountService.deposit(accountId, amount);
+        return AccountMapper.toResponse(
+                accountService.deposit(accountId, amount)
+        );
     }
 
     @PostMapping("/{accountId}/withdraw")
-    public Account withdraw(
+    public AccountResponse withdraw(
             @PathVariable Long accountId,
             @RequestParam BigDecimal amount
     ) {
-        return accountService.withdraw(accountId, amount);
+        return AccountMapper.toResponse(
+                accountService.withdraw(accountId, amount)
+        );
     }
 
     @PostMapping("/{sourceAccountId}/transfer/{targetAccountId}")
-    public Account transfer(
+    public AccountResponse transfer(
             @PathVariable Long sourceAccountId,
             @PathVariable Long targetAccountId,
             @RequestParam BigDecimal amount
     ) {
-        return accountService.transfer(sourceAccountId, targetAccountId, amount);
+        return AccountMapper.toResponse(
+                accountService.transfer(sourceAccountId, targetAccountId, amount)
+        );
     }
 
     @GetMapping
-    public List<Account> getAllAccounts() {
-        return accountService.getAllAccounts();
+    public List<AccountResponse> getAllAccounts() {
+        return accountService.getAllAccounts()
+                .stream()
+                .map(AccountMapper::toResponse)
+                .toList();
     }
 }
