@@ -279,6 +279,12 @@ Application runs on:
 http://localhost:8080
 ```
 
+How to run tests:
+
+```bash
+./mvnw.cmd test
+```
+
 ---
 
 ## Current Status
