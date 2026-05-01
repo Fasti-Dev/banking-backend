@@ -28,7 +28,8 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionType type;
 
-    private String direction;
+    @Enumerated(EnumType.STRING)
+    private TransactionDirection direction;
 
     private Long relatedAccountId;
 

@@ -3,6 +3,7 @@ package com.banking.account;
 import com.banking.customer.Customer;
 import com.banking.customer.CustomerRepository;
 import com.banking.transaction.Transaction;
+import com.banking.transaction.TransactionDirection;
 import com.banking.transaction.TransactionRepository;
 import com.banking.transaction.TransactionType;
 import com.banking.common.exception.BankingException;
@@ -49,7 +50,7 @@ public class AccountService {
                 .account(account)
                 .amount(amount)
                 .type(TransactionType.DEPOSIT)
-                .direction("IN")
+                .direction(TransactionDirection.IN)
                 .relatedAccountId(null)
                 .description("Deposit to account " + account.getId())
                 .timestamp(LocalDateTime.now())
@@ -74,7 +75,7 @@ public class AccountService {
                 .account(account)
                 .amount(amount)
                 .type(TransactionType.WITHDRAWAL)
-                .direction("OUT")
+                .direction(TransactionDirection.OUT)
                 .relatedAccountId(null)
                 .description("Withdraw from account " + account.getId())
                 .timestamp(LocalDateTime.now())
@@ -103,7 +104,7 @@ public class AccountService {
                 .account(sourceAccount)
                 .amount(amount)
                 .type(TransactionType.TRANSFER)
-                .direction("OUT")
+                .direction(TransactionDirection.OUT)
                 .relatedAccountId(targetAccount.getId())
                 .description("Transfer to account " + targetAccount.getId())
                 .timestamp(LocalDateTime.now())
@@ -113,7 +114,7 @@ public class AccountService {
                 .account(targetAccount)
                 .amount(amount)
                 .type(TransactionType.TRANSFER)
-                .direction("IN")
+                .direction(TransactionDirection.IN)
                 .relatedAccountId(sourceAccount.getId())
                 .description("Transfer from account " + sourceAccount.getId())
                 .timestamp(LocalDateTime.now())

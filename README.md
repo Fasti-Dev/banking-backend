@@ -58,6 +58,7 @@ src/main/java/com/banking
 ├── transaction
 │   ├── Transaction
 │   ├── TransactionController
+│   ├── TransactionDirection
 │   ├── TransactionMapper
 │   ├── TransactionRepository
 │   ├── TransactionResponse
@@ -155,7 +156,7 @@ Fields:
 - id
 - amount
 - type
-- direction
+- direction (IN / OUT)
 - relatedAccountId
 - description
 - timestamp
