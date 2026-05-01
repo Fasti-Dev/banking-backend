@@ -32,6 +32,8 @@ The application currently supports:
 - Jakarta Validation
 - DTO Pattern (API Response Models)
 - Swagger / OpenAPI
+- JUnit 5
+- Mockito
 
 ---
 
@@ -93,17 +95,30 @@ src/main/java/com/banking
 
 - View all transactions of an account
 
-### Error Handling
-
-- Global exception handler
-- Clean JSON error responses
-- Proper HTTP status codes (400 / 404)
-
 ### API Design
 
 - DTO-based API responses
 - Clean separation between entities and external responses
 - Stable and controlled JSON output
+
+### Validation
+
+- Input validation using Jakarta Validation
+- Ensures valid request data (e.g. email format, positive amounts)
+- Returns clear validation error messages
+
+### Testing
+
+- Unit tests for service layer
+- Tested business logic (deposit, withdrawal, transfer)
+- Includes edge case testing (e.g. insufficient balance)
+- Uses JUnit and Mockito
+
+### Error Handling
+
+- Global exception handler
+- Clean JSON error responses
+- Proper HTTP status codes (400 / 404)
 
 ---
 
@@ -280,6 +295,8 @@ Implemented Features:
 - DTO architecture for API responses
 - Mapper classes for entity-to-response conversion
 - Swagger / OpenAPI documentation
+- Unit tests for service layer
+- Error case testing
 
 ---
 
@@ -287,6 +304,5 @@ Implemented Features:
 
 Planned next improvements:
 
-- Unit / Integration tests
 - PostgreSQL support
 - Authentication / Security

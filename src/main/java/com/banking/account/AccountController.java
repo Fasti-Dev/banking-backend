@@ -2,6 +2,7 @@ package com.banking.account;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.constraints.Positive;
 
 import java.util.List;
 import java.math.BigDecimal;
@@ -24,7 +25,7 @@ public class AccountController {
     @PostMapping("/{accountId}/deposit")
     public AccountResponse deposit(
             @PathVariable Long accountId,
-            @RequestParam BigDecimal amount
+            @RequestParam @Positive BigDecimal amount
     ) {
         return AccountMapper.toResponse(
                 accountService.deposit(accountId, amount)
@@ -34,7 +35,7 @@ public class AccountController {
     @PostMapping("/{accountId}/withdraw")
     public AccountResponse withdraw(
             @PathVariable Long accountId,
-            @RequestParam BigDecimal amount
+            @RequestParam @Positive BigDecimal amount
     ) {
         return AccountMapper.toResponse(
                 accountService.withdraw(accountId, amount)
@@ -45,7 +46,7 @@ public class AccountController {
     public AccountResponse transfer(
             @PathVariable Long sourceAccountId,
             @PathVariable Long targetAccountId,
-            @RequestParam BigDecimal amount
+            @RequestParam @Positive BigDecimal amount
     ) {
         return AccountMapper.toResponse(
                 accountService.transfer(sourceAccountId, targetAccountId, amount)
